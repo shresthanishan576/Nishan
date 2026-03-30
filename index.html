@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Nishan Dangol — Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,600;0,700;1,300;1,700&family=DM+Sans:opsz,wght@9..40,200;9..40,300;9..40,400;9..40,500&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<div class="noise"></div>
+<canvas id="bgCanvas"></canvas>
+<div class="cursor-dot"  id="cursorDot"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<!-- LOADER -->
+<div id="loader">
+  <div class="loader-inner">
+    <div class="loader-name" id="loaderName">
+      <span>N</span><span>i</span><span>s</span><span>h</span><span>a</span><span>n</span><span class="gold">.</span>
+    </div>
+    <div class="loader-bar-wrap">
+      <div class="loader-bar" id="loaderBar"></div>
+    </div>
+    <div class="loader-count" id="loaderCount">000</div>
+  </div>
+</div>
+
+<!-- NAV -->
+<nav id="nav">
+  <a href="#" class="nav-logo">Nishan<span class="gold">.</span></a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#projects">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <button class="nav-cta" id="openCvBtn">
+    <span class="btn-inner">Hire Me</span>
+    <div class="btn-shine"></div>
+  </button>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-orb orb-1"></div>
+  <div class="hero-orb orb-2"></div>
+  <div class="hero-bg-word" aria-hidden="true">NISHAN</div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <span class="ey-line"></span>
+      <span class="ey-text">Business &amp; Operations · AI Web Developer · Nepal</span>
+    </div>
+    <h1 class="hero-title">
+      <span class="ht-clip"><span class="ht-word">Nishan</span></span>
+      <span class="ht-clip"><span class="ht-word italic gold">Dangol.</span></span>
+    </h1>
+    <div class="hero-bottom">
+      <p class="hero-desc">
+        Results-driven professional with <strong>3+ years</strong> across business
+        development, executive assistance &amp; operations.<br>
+        <em>Driven by efficiency. Powered by people.</em>
+      </p>
+      <div class="hero-scroll">
+        <div class="hs-ring"></div>
+        <div class="hs-dot"></div>
+        <span class="hs-label">Scroll</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="mi">Business Development</span><span class="md">◆</span>
+    <span class="mi">AI Web Developer</span><span class="md">◆</span>
+    <span class="mi">Twisted Thread</span><span class="md">◆</span>
+    <span class="mi">Executive Assistance</span><span class="md">◆</span>
+    <span class="mi">BJ Card Counter</span><span class="md">◆</span>
+    <span class="mi">HTML · CSS · JS</span><span class="md">◆</span>
+    <span class="mi">Lalitpur, Nepal</span><span class="md">◆</span>
+    <span class="mi">Operations Management</span><span class="md">◆</span>
+    <span class="mi">Business Development</span><span class="md">◆</span>
+    <span class="mi">AI Web Developer</span><span class="md">◆</span>
+    <span class="mi">Twisted Thread</span><span class="md">◆</span>
+    <span class="mi">Executive Assistance</span><span class="md">◆</span>
+    <span class="mi">BJ Card Counter</span><span class="md">◆</span>
+    <span class="mi">HTML · CSS · JS</span><span class="md">◆</span>
+    <span class="mi">Lalitpur, Nepal</span><span class="md">◆</span>
+    <span class="mi">Operations Management</span><span class="md">◆</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="sh reveal"><span class="sh-num">01</span><span class="sh-title">About</span><div class="sh-line"></div></div>
+  <div class="about-grid">
+    <div class="about-left reveal">
+      <h2 class="section-title">Results that<br><em class="gold">matter.</em></h2>
+      <p>I'm <strong>Nishan Dangol</strong>, based in Lalitpur, Nepal — a results-driven professional with 3+ years spanning business development, executive assistance, and operations management.</p>
+      <p>Most recently as <strong>Executive Assistant &amp; Management Coordinator</strong> at UrbanMart Pvt. Ltd., India — complex schedules, confidential docs, cross-functional coordination with <strong>100% accuracy</strong>.</p>
+      <p>Before that, <strong>Business Development Executive</strong> at Armaans Globe — market research, client relationships, strategic growth.</p>
+      <p>Passionate about leveraging technology to make work faster, easier, and more effective.</p>
+    </div>
+    <div class="about-right">
+      <div class="about-photo reveal">
+        <div class="ap-inner">
+          <span class="ap-letter">N</span>
+          <p class="ap-hint">Replace with<br>&lt;img src="photo.jpg"&gt;</p>
+        </div>
+        <div class="ap-deco"></div>
+      </div>
+      <div class="about-stats reveal">
+        <div class="stat-box"><div class="sb-num">3<em>+</em></div><div class="sb-label">Years Exp.</div></div>
+        <div class="stat-box"><div class="sb-num">3</div><div class="sb-label">Roles Held</div></div>
+        <div class="stat-box"><div class="sb-num">5<em>+</em></div><div class="sb-label">Sites Built</div></div>
+        <div class="stat-box"><div class="sb-num">∞</div><div class="sb-label">Drive</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="sh reveal"><span class="sh-num">02</span><span class="sh-title">Work</span><div class="sh-line"></div></div>
+  <h2 class="section-title reveal">Sites &amp;<br><em class="gold">Projects.</em></h2>
+  <div class="project-list">
+
+    <a href="https://shresthanishan576.github.io/11111/" target="_blank" rel="noopener" class="pi reveal">
+      <div class="pi-num">01</div>
+      <div class="pi-body">
+        <div class="pi-name">Twisted Thread</div>
+        <div class="pi-sub">Handmade crochet brand — keyrings, bouquets &amp; clothing</div>
+        <div class="pi-tags">
+          <span>Website</span><span>HTML/CSS/JS</span><span>Nepal</span>
+          <span class="tag-cta">Click Me ↗</span>
+        </div>
+      </div>
+      <div class="pi-arr"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-opacity="0.25"/><path d="M13 27L27 13M27 13H17M27 13V23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="pi-bg"></div>
+    </a>
+
+    <div class="pi reveal no-link">
+      <div class="pi-num">02</div>
+      <div class="pi-body">
+        <div class="pi-name">HamroWeb</div>
+        <div class="pi-sub">Web services platform for Nepali businesses</div>
+        <div class="pi-tags"><span>Website</span><span>HTML/CSS/JS</span><span>Nepal</span></div>
+      </div>
+      <div class="pi-arr muted">—</div>
+      <div class="pi-bg"></div>
+    </div>
+
+    <div class="pi reveal no-link">
+      <div class="pi-num">03</div>
+      <div class="pi-body">
+        <div class="pi-name">DwellMart</div>
+        <div class="pi-sub">E-commerce store — dwellmart.shop</div>
+        <div class="pi-tags"><span>Website</span><span>E-commerce</span><span>HTML/CSS/JS</span></div>
+      </div>
+      <div class="pi-arr muted">—</div>
+      <div class="pi-bg"></div>
+    </div>
+
+    <div class="pi reveal no-link">
+      <div class="pi-num">04</div>
+      <div class="pi-body">
+        <div class="pi-name">3 Other Client Sites</div>
+        <div class="pi-sub">Additional websites built and deployed for clients</div>
+        <div class="pi-tags"><span>Client Work</span><span>Web Design</span><span>HTML/CSS/JS</span></div>
+      </div>
+      <div class="pi-arr muted">—</div>
+      <div class="pi-bg"></div>
+    </div>
+
+    <a href="https://ais-dev-kdoehotwgtpxrr7uortcvv-700561022978.asia-southeast1.run.app/" target="_blank" rel="noopener" class="pi reveal">
+      <div class="pi-num">05</div>
+      <div class="pi-body">
+        <div class="pi-name">BJ Card Counter</div>
+        <div class="pi-sub">AI-powered Blackjack card counting web application</div>
+        <div class="pi-tags">
+          <span>Web App</span><span>AI</span><span>JavaScript</span>
+          <span class="tag-cta">Click Here ↗</span>
+        </div>
+      </div>
+      <div class="pi-arr"><svg viewBox="0 0 40 40" fill="none"><circle cx="20" cy="20" r="19" stroke="currentColor" stroke-opacity="0.25"/><path d="M13 27L27 13M27 13H17M27 13V23" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg></div>
+      <div class="pi-bg"></div>
+    </a>
+
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="sh reveal"><span class="sh-num">03</span><span class="sh-title">Skills</span><div class="sh-line"></div></div>
+  <h2 class="section-title reveal">Skills &amp;<br><em class="gold">Tools.</em></h2>
+  <div class="skills-grid">
+
+    <div class="sk-card reveal">
+      <div class="sk-icon">⬡</div>
+      <div class="sk-title">Technical</div>
+      <ul class="sk-list">
+        <li><span class="sk-bar"><span style="--w:90%"></span></span>Microsoft Office Suite</li>
+        <li><span class="sk-bar"><span style="--w:85%"></span></span>Google Workspace</li>
+        <li><span class="sk-bar"><span style="--w:75%"></span></span>CRM Software</li>
+        <li><span class="sk-bar"><span style="--w:80%"></span></span>Data Analysis</li>
+        <li><span class="sk-bar"><span style="--w:85%"></span></span>Project Mgmt Tools</li>
+      </ul>
+    </div>
+
+    <div class="sk-card reveal">
+      <div class="sk-icon">◈</div>
+      <div class="sk-title">Professional</div>
+      <ul class="sk-list">
+        <li><span class="sk-bar"><span style="--w:92%"></span></span>Executive Assistance</li>
+        <li><span class="sk-bar"><span style="--w:88%"></span></span>Business Development</li>
+        <li><span class="sk-bar"><span style="--w:85%"></span></span>Stakeholder Mgmt</li>
+        <li><span class="sk-bar"><span style="--w:87%"></span></span>Client Relations</li>
+        <li><span class="sk-bar"><span style="--w:82%"></span></span>Market Research</li>
+      </ul>
+    </div>
+
+    <div class="sk-card reveal">
+      <div class="sk-icon">◇</div>
+      <div class="sk-title">Operations</div>
+      <ul class="sk-list">
+        <li><span class="sk-bar"><span style="--w:88%"></span></span>Process Documentation</li>
+        <li><span class="sk-bar"><span style="--w:90%"></span></span>Schedule Management</li>
+        <li><span class="sk-bar"><span style="--w:83%"></span></span>Cross-functional Collab</li>
+        <li><span class="sk-bar"><span style="--w:85%"></span></span>Process Improvement</li>
+        <li><span class="sk-bar"><span style="--w:87%"></span></span>Record Management</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="sh reveal"><span class="sh-num">04</span><span class="sh-title">Contact</span><div class="sh-line"></div></div>
+  <div class="contact-inner">
+    <h2 class="contact-heading reveal">Let's <em class="gold">work</em><br>together.</h2>
+    <div class="contact-right reveal">
+      <p class="contact-sub">Have an opportunity? I'd love to connect.</p>
+      <a href="mailto:shresthanishan576@gmail.com" class="contact-email-link">
+        shresthanishan576@gmail.com
+        <svg viewBox="0 0 18 18" fill="none"><path d="M3 15L15 3M15 3H7M15 3V11" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+      </a>
+      <div class="contact-row">
+        <a href="tel:9820550310" class="cr-link">+977 9820550310</a>
+        <span class="cr-sep">·</span>
+        <button class="cr-link" id="openCvBtn2">View CV</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2026 Nishan Dangol</p>
+  <p>Lalitpur, Nepal 🇳🇵</p>
+</footer>
+
+<!-- PASSWORD GATE -->
+<div id="pw-gate">
+  <div class="pw-panel">
+    <div class="pw-glow"></div>
+    <div class="pw-lock-icon">🔒</div>
+    <h3 class="pw-title">Protected</h3>
+    <p class="pw-desc">Enter the password to view my CV</p>
+    <div class="pw-input-row">
+      <input type="password" id="pw-input" placeholder="Password" autocomplete="off">
+      <button id="pw-submit">
+        <span class="btn-inner">→</span>
+        <div class="btn-shine"></div>
+      </button>
+    </div>
+    <p class="pw-error" id="pw-error">Incorrect password. Try again.</p>
+    <button class="pw-close-btn" id="pw-gate-close">✕</button>
+  </div>
+</div>
+
+<!-- CV MODAL -->
+<div id="cv-modal" role="dialog" aria-modal="true">
+  <div class="cv-panel">
+
+    <div class="cv-header">
+      <div>
+        <div class="cv-name">Nishan <em>Dangol.</em></div>
+        <div class="cv-location">Lalitpur, Nepal</div>
+        <div class="cv-contacts">
+          <a href="mailto:shresthanishan576@gmail.com" class="cv-contact">shresthanishan576@gmail.com</a>
+          <a href="tel:9820550310" class="cv-contact">9820550310</a>
+        </div>
+      </div>
+      <button class="cv-close" id="closeCvBtn">✕ Close</button>
+    </div>
+
+    <div class="cv-body">
+
+      <div class="cv-sec">
+        <div class="cv-sec-title">Summary</div>
+        <p class="cv-summary">Results-driven professional with 3+ years of experience in business development, executive assistance, and operations management. Proven track record in customer service excellence, stakeholder management, and process optimisation. Strong technical aptitude with expertise in documentation systems, data analysis, and cross-functional collaboration. Passionate about leveraging technology to drive efficiency and enhance user experiences.</p>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-sec-title">Professional Experience</div>
+
+        <div class="cv-exp">
+          <div class="cv-exp-head">
+            <div class="cv-exp-role">Executive Assistant &amp; Management Coordinator</div>
+            <div class="cv-exp-date">May 2024 – Dec 2025</div>
+          </div>
+          <div class="cv-exp-co">UrbanMart Pvt. Ltd. — India</div>
+          <ul class="cv-bullets">
+            <li>Provided comprehensive administrative and operational support to senior management, managing complex schedules, coordinating high-priority meetings, and ensuring seamless executive operations.</li>
+            <li>Managed confidential documentation and correspondence with 100% accuracy, implementing organised filing systems that improved retrieval efficiency.</li>
+            <li>Supported business planning initiatives by coordinating with internal teams and external partners, monitoring project timelines, and ensuring on-time completion of deliverables.</li>
+            <li>Enhanced workflow efficiency through process documentation and implementation of tracking systems, reducing project delays.</li>
+            <li>Demonstrated strong communication skills in liaising with stakeholders across multiple departments and geographic locations.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp">
+          <div class="cv-exp-head">
+            <div class="cv-exp-role">Business Development Executive</div>
+            <div class="cv-exp-date">Aug 2023 – Nov 2023</div>
+          </div>
+          <div class="cv-exp-co">Armaans Globe — Kathmandu</div>
+          <ul class="cv-bullets">
+            <li>Identified and pursued new business opportunities, conducting market research and competitive analysis to support strategic growth initiatives.</li>
+            <li>Built and maintained strong client relationships through clear communication and deep understanding of customer needs.</li>
+            <li>Contributed to business strategy development by researching market trends and presenting data-driven insights to leadership.</li>
+            <li>Supported sales growth initiatives through proactive outreach and relationship management with potential clients.</li>
+            <li>Collaborated with cross-functional teams to align business development efforts with organisational objectives.</li>
+          </ul>
+        </div>
+
+        <div class="cv-exp">
+          <div class="cv-exp-head">
+            <div class="cv-exp-role">Barista &amp; Service Staff</div>
+            <div class="cv-exp-date">Aug 2022 – Jul 2023</div>
+          </div>
+          <div class="cv-exp-co">Hotel Timila — Patan</div>
+          <ul class="cv-bullets">
+            <li>Delivered exceptional customer service in a fast-paced hospitality environment, consistently receiving positive feedback from guests.</li>
+            <li>Maintained high standards of cleanliness, hygiene, and operational efficiency in dining areas.</li>
+            <li>Demonstrated ability to work effectively under pressure while managing multiple priorities.</li>
+            <li>Contributed to positive team culture through reliable performance and collaborative approach.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-sec-title">Education</div>
+        <div class="cv-edu">
+          <div><div class="cv-edu-deg">Bachelor of Business Studies (BBS)</div><div class="cv-edu-school">Patan Campus, Patan</div></div>
+          <div class="cv-edu-yr">Present</div>
+        </div>
+        <div class="cv-edu">
+          <div><div class="cv-edu-deg">Hotel Management Diploma</div><div class="cv-edu-school">Einstein Xavier Academy, Lalitpur</div></div>
+          <div class="cv-edu-yr">Feb 2019 – Jan 2021</div>
+        </div>
+        <div class="cv-edu">
+          <div><div class="cv-edu-deg">High School</div><div class="cv-edu-school">S.T. Paul School, Lalitpur</div></div>
+          <div class="cv-edu-yr">—</div>
+        </div>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-sec-title">Skills</div>
+        <div class="cv-skills-cols">
+          <div>
+            <div class="cv-skills-cat">Technical</div>
+            <div class="cv-pills">
+              <span>Microsoft Office</span><span>Google Workspace</span><span>CRM Software</span>
+              <span>Data Analysis</span><span>Documentation Systems</span><span>Project Mgmt Tools</span>
+            </div>
+          </div>
+          <div>
+            <div class="cv-skills-cat">Professional</div>
+            <div class="cv-pills">
+              <span>Executive Assistance</span><span>Client Relations</span><span>Business Development</span>
+              <span>Market Research</span><span>Stakeholder Mgmt</span><span>Process Improvement</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="cv-sec">
+        <div class="cv-sec-title">Languages</div>
+        <div class="cv-langs">
+          <div class="cv-lang"><span class="cv-lang-name">English</span><span class="cv-lang-lv">Fluent</span></div>
+          <div class="cv-lang"><span class="cv-lang-name">Nepali</span><span class="cv-lang-lv">Native</span></div>
+          <div class="cv-lang"><span class="cv-lang-name">Hindi</span><span class="cv-lang-lv">Conversational</span></div>
+        </div>
+      </div>
+
+      <a href="mailto:shresthanishan576@gmail.com" class="cv-cta">
+        <span class="btn-inner">✉ Get in Touch</span>
+        <div class="btn-shine"></div>
+      </a>
+
+    </div>
+  </div>
+</div>
+
+<script src="main.js"></script>
+</body>
+</html>
