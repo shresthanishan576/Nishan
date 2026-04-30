@@ -1,16 +1,33 @@
 /* ============================================================
-   NISHAN PORTFOLIO — main.js (Optimized)
+   NISHAN PORTFOLIO — main.js (Premium Animated)
    ============================================================ */
-
 'use strict';
 
-// 1. Detect Touch Device
 const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
 
-// 2. Optimized Cursor
+// ── PRELOADER ──
+(function initLoader() {
+  const num = document.getElementById('loader-num');
+  const preloader = document.getElementById('preloader');
+  let count = 0;
+  const interval = setInterval(() => {
+    count += Math.floor(Math.random() * 8) + 2;
+    if (count >= 100) { count = 100; clearInterval(interval); }
+    num.textContent = count;
+    if (count === 100) {
+      setTimeout(() => {
+        preloader.classList.add('done');
+        document.body.style.overflow = '';
+        initAnimations();
+      }, 500);
+    }
+  }, 40);
+  document.body.style.overflow = 'hidden';
+})();
+
+// ── CUSTOM CURSOR ──
 (function initCursor() {
-  if (isTouchDevice) return; // Exit if mobile
-  
+  if (isTouchDevice) return;
   const dot = document.getElementById('cursorDot');
   const ring = document.getElementById('cursorRing');
   let mx = -100, my = -100, rx = -100, ry = -100;
@@ -20,62 +37,234 @@ const isTouchDevice = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
     dot.style.transform = `translate(${mx}px, ${my}px)`;
   });
 
-  const smoothRing = () => {
-    rx += (mx - rx) * 0.15;
-    ry += (my - ry) * 0.15;
+  (function smoothRing() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
     ring.style.transform = `translate(${rx}px, ${ry}px)`;
     requestAnimationFrame(smoothRing);
-  };
-  smoothRing();
+  })();
 
-  // Hover states
-  const interactives = document.querySelectorAll('a, button, .pi, .stat-box, .sk-card');
-  interactives.forEach(el => {
+  document.querySelectorAll('a, button, [data-magnetic]').forEach(el => {
     el.addEventListener('mouseenter', () => document.body.classList.add('hovering'));
     el.addEventListener('mouseleave', () => document.body.classList.remove('hovering'));
   });
 })();
 
-// 3. Scroll Reveal with Stagger
-const revealItems = () => {
+// ── AMBIENT CANVAS PARTICLES ──
+(function initCanvas() {
+  const canvas = document.getElementById('ambientCanvas');
+  const ctx = canvas.getContext('2d');
+  let w, h, particles = [];
+
+  function resize() {
+    w = canvas.width = window.innerWidth;
+    h = canvas.height = window.innerHeight;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  class Particle {
+    constructor() { this.reset(); }
+    reset() {
+      this.x = Math.random() * w;
+      this.y = Math.random() * h;
+      this.size = Math.random() * 1.5 + 0.5;
+      this.speedX = (Math.random() - 0.5) * 0.3;
+      this.speedY = (Math.random() - 0.5) * 0.3;
+      this.opacity = Math.random() * 0.4 + 0.1;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.x < 0 || this.x > w || this.y < 0 || this.y > h) this.reset();
+    }
+    draw() {
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+      ctx.fill();
+    }
+  }
+
+  const count = Math.min(60, Math.floor(w * h / 20000));
+  for (let i = 0; i < count; i++) particles.push(new Particle());
+
+  (function animate() {
+    ctx.clearRect(0, 0, w, h);
+    particles.forEach(p => { p.update(); p.draw(); });
+    requestAnimationFrame(animate);
+  })();
+})();
+
+// ── NAVBAR SCROLL ──
+(function initNavbar() {
+  const navbar = document.getElementById('navbar');
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      requestAnimationFrame(() => {
+        navbar.classList.toggle('scrolled', window.scrollY > 60);
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+})();
+
+// ── MOBILE MENU ──
+(function initMobileMenu() {
+  const hamburger = document.getElementById('hamburger');
+  const menu = document.getElementById('mobileMenu');
+  hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    menu.classList.toggle('open');
+    document.body.style.overflow = menu.classList.contains('open') ? 'hidden' : '';
+  });
+  menu.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      hamburger.classList.remove('active');
+      menu.classList.remove('open');
+      document.body.style.overflow = '';
+    });
+  });
+})();
+
+// ── SCROLL REVEAL ──
+function initReveal() {
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry, i) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('active'); // Use CSS class instead of inline styles
+        // Add stagger delay for sibling reveals
+        const parent = entry.target.parentElement;
+        const siblings = parent ? Array.from(parent.querySelectorAll('.reveal')) : [];
+        const idx = siblings.indexOf(entry.target);
+        const delay = idx >= 0 ? idx * 80 : 0;
+        setTimeout(() => entry.target.classList.add('active'), delay);
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: 0.15 });
-
+  }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
   document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-};
+}
 
-// 4. CV Password Logic (Note: Hardcoded strings are viewable in source)
-const CV_CONFIG = {
-  pass: 'nishan2026',
-  unlocked: false
-};
+// ── COUNTER ANIMATION ──
+function initCounters() {
+  const counters = document.querySelectorAll('[data-count]');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const el = entry.target;
+        const target = parseInt(el.dataset.count);
+        const duration = 1500;
+        const start = performance.now();
+        function tick(now) {
+          const elapsed = now - start;
+          const progress = Math.min(elapsed / duration, 1);
+          const eased = 1 - Math.pow(1 - progress, 3);
+          el.textContent = Math.floor(eased * target);
+          if (progress < 1) requestAnimationFrame(tick);
+        }
+        requestAnimationFrame(tick);
+        observer.unobserve(el);
+      }
+    });
+  }, { threshold: 0.5 });
+  counters.forEach(c => observer.observe(c));
+}
 
-const handlePw = () => {
-  const input = document.getElementById('pw-input');
-  const error = document.getElementById('pw-error');
-  
-  if (input.value === CV_CONFIG.pass) {
-    CV_CONFIG.unlocked = true;
-    document.getElementById('pw-gate').classList.remove('open');
-    document.getElementById('cv-modal').classList.add('open');
-  } else {
-    error.classList.add('show');
-    input.classList.add('shake');
-    setTimeout(() => input.classList.remove('shake'), 400);
-  }
-};
+// ── SKILL BARS ──
+function initSkillBars() {
+  const fills = document.querySelectorAll('.sk-fill');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const w = entry.target.dataset.width;
+        setTimeout(() => { entry.target.style.width = w + '%'; }, 200);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  fills.forEach(f => observer.observe(f));
+}
 
-// Add listener to submit button
-document.getElementById('pw-submit').addEventListener('click', handlePw);
+// ── MAGNETIC BUTTONS ──
+function initMagnetic() {
+  if (isTouchDevice) return;
+  document.querySelectorAll('[data-magnetic]').forEach(el => {
+    el.addEventListener('mousemove', e => {
+      const rect = el.getBoundingClientRect();
+      const x = e.clientX - rect.left - rect.width / 2;
+      const y = e.clientY - rect.top - rect.height / 2;
+      el.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+    });
+    el.addEventListener('mouseleave', () => {
+      el.style.transform = '';
+      el.style.transition = 'transform 0.4s cubic-bezier(0.23, 1, 0.32, 1)';
+      setTimeout(() => { el.style.transition = ''; }, 400);
+    });
+  });
+}
 
-// 5. Initialize on Load
-window.addEventListener('DOMContentLoaded', () => {
-    // Canvas and Loader initialization code here...
-    revealItems();
+// ── SMOOTH SCROLL ──
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    e.preventDefault();
+    const target = document.querySelector(id);
+    if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+  });
 });
+
+// ── CV PASSWORD MODAL ──
+(function initCV() {
+  const cvBtn = document.getElementById('cv-btn');
+  const pwGate = document.getElementById('pw-gate');
+  const pwClose = document.getElementById('pw-close');
+  const pwInput = document.getElementById('pw-input');
+  const pwSubmit = document.getElementById('pw-submit');
+  const pwError = document.getElementById('pw-error');
+  const cvModal = document.getElementById('cv-modal');
+  const cvClose = document.getElementById('cv-close');
+  const PASS = 'nishan2026';
+
+  cvBtn.addEventListener('click', () => pwGate.classList.add('open'));
+  pwClose.addEventListener('click', () => pwGate.classList.remove('open'));
+  cvClose.addEventListener('click', () => cvModal.classList.remove('open'));
+
+  function tryPassword() {
+    if (pwInput.value === PASS) {
+      pwGate.classList.remove('open');
+      cvModal.classList.add('open');
+      pwError.classList.remove('show');
+    } else {
+      pwError.classList.add('show');
+      pwInput.classList.add('shake');
+      setTimeout(() => pwInput.classList.remove('shake'), 400);
+    }
+  }
+  pwSubmit.addEventListener('click', tryPassword);
+  pwInput.addEventListener('keydown', e => { if (e.key === 'Enter') tryPassword(); });
+
+  // Close on backdrop
+  [pwGate, cvModal].forEach(m => {
+    m.addEventListener('click', e => { if (e.target === m) m.classList.remove('open'); });
+  });
+})();
+
+// ── SCROLL INDICATOR FADE ──
+(function initScrollFade() {
+  const indicator = document.getElementById('scrollIndicator');
+  if (!indicator) return;
+  window.addEventListener('scroll', () => {
+    indicator.style.opacity = window.scrollY > 200 ? '0' : '1';
+  });
+})();
+
+// ── INIT ALL ANIMATIONS ──
+function initAnimations() {
+  initReveal();
+  initCounters();
+  initSkillBars();
+  initMagnetic();
+}
